@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+@section styles{
+    <link href="~/Content/jquery.fullPage.css" rel="stylesheet"/>
+    <link href="~/Content/agecheck.css" rel="stylesheet"/>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/fullpage")
+    
+    @Scripts.Render("~/bundles/agecheck")
+}
+
+<div id="fullPage">
+    <div class="section container">
+        <div class="row">
+            <img src="~/Content/images/WatermarkScriptPath.svg" class="img-responsive supertitle" />
+        </div>
+        <div class="row">
+            <h3 class="header-subtitle">&nbsp;BREWING&nbsp; COMPANY</h3>
+        </div>
+        @Html.Partial("_Navbar")
+    </div>
+    <div class="section container">
+        @* TODO: Fill this with some content, maybe add even more pages*@
+    </div>
+</div>

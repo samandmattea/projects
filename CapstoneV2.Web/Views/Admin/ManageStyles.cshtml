@@ -1,0 +1,44 @@
+﻿@model List<CapstoneV2.Models.Data.Style>
+@{
+    ViewBag.Title = "Manage Beer Styles";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Style", "AddStyle", "Admin", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+
+        @if (!Model.Any())
+        {
+            <p>
+                No styles here yet.  Add them with the button above.
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var style in Model)
+                    {
+                        <tr>
+                            <td>@style.Name</td>
+                            <td>@Html.ActionLink("Edit", "EditStyle", "Admin", new { id = style.StyleId }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteStyle", "Admin", new { id = style.StyleId}, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

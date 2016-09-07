@@ -1,0 +1,64 @@
+﻿@model List<CapstoneV2.Models.Data.Beer>
+@{
+    ViewBag.Title = "Manage Beers";
+}
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Beer", "AddBeer", "Admin", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class="btn btn-danger" })
+        @if (!Model.Any())
+        {
+            <p>
+                Someone drank all the beer! Really though, either an error has occurred or
+                there aren't any beers in the database yet.
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Style</th>
+                        <th>Series</th>
+                        <th>Currently Available</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var beer in Model)
+                    {
+                        <tr>
+                            <td>@beer.Name</td>
+                            <td>@beer.Style.Name</td>
+                            @if (beer.Series != null)
+                            {
+                                <td>@beer.Series.Name</td>
+                            }
+                            else
+                            {
+                                <td><i>None</i></td>
+                            }
+                            <td>
+                                @if (beer.IsAvailable)
+                                {
+                                    <span>Yes</span>
+                                }
+                                else
+                                {
+                                    <span>No</span>
+                                }
+                            </td>
+                            <td>@Html.ActionLink("Edit", "EditBeer", "Admin", new { id = beer.BeerId }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteBeer", "Admin", new { id = beer.BeerId }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

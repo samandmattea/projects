@@ -1,0 +1,26 @@
+﻿@model CapstoneV2.Models.Data.StaticPage
+@{
+    ViewBag.Title = "Delete " + Model.Title;
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>@ViewBag.Title</h2>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("DeleteStaticPage", "Admin", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m=>m.PageId)
+                    <div class="row">
+                        <div class="col-xs-12">Are you sure you want to delete the @Model.Title page?</div>
+                    </div>
+                    <button class="btn btn-primary">Delete</button>
+                    @Html.ActionLink("Cancel", "ManageStaticPages", "Admin", new { @class = "btn btn-primary" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

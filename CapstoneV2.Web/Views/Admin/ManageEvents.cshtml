@@ -1,0 +1,47 @@
+﻿@model List<CapstoneV2.Models.Data.Event>
+@{
+    ViewBag.Title = "Manage Events";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Event", "AddEvent", "Admin", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+        @if (!Model.Any())
+        {
+            <p>
+                No events yet
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Start Date</th>
+                        <th>Venue</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            <td>@e.Name</td>
+                            <td>@e.StartDate</td>
+                            <td>@e.Venue.Name</td>
+                            <td>@Html.ActionLink("Edit", "EditEvent", "Admin", new { id = e.EventId }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteEvent", "Admin", new { id = e.EventId}, new {@class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

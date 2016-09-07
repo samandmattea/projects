@@ -1,0 +1,46 @@
+﻿@model List<CapstoneV2.Models.Data.Collaborator>
+@{
+    ViewBag.Title = "Manage Collaborators";
+}
+
+<h2>ManageCollaborators</h2>
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Collaborator", "AddCollaborator", "Admin", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+
+        @if (!Model.Any())
+        {
+            <p>
+                No collaborators yet
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var collab in Model)
+                    {
+                        <tr>
+                            <td>@collab.Name</td>
+                            <td>@Html.ActionLink("Edit", "EditCollaborator", "Admin", new { id = collab.CollaboratorId },new{ @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteCollaborator", "Admin", new { id = collab.CollaboratorId}, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

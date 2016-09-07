@@ -1,0 +1,124 @@
+﻿@model CapstoneV2.Web.Models.NewBeerViewModel
+@{
+    ViewBag.Title = "Add Beer";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/beer-form.js"></script>
+}
+
+@using (Html.BeginForm("AddBeer", "Admin", FormMethod.Post, new {id = "beerForm", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">@ViewBag.Title</div>
+                <div class="panel-body">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Name)
+                    @Html.LabelFor(m => m.StyleId)
+                    <fieldset id="styleRadio">
+                        <input type="radio" name="styleRadios" id="newStyleRadio"/> New
+                        <input type="radio" name="styleRadios" id="existingStyleRadio" checked="checked"/> Existing
+                    </fieldset>
+                    @Html.DropDownListFor(m => m.StyleId, Model.StyleItems, "None", new {id = "existingStyle", @class = "form-control"})
+                    @Html.LabelFor(m => m.ABV)
+                    @Html.TextBoxFor(m => m.ABV, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ABV)
+                    @Html.LabelFor(m => m.IBU)
+                    @Html.TextBoxFor(m => m.IBU, new {@class = "form-control", placeholder = "Optional" })
+                    @Html.LabelFor(m => m.ReleaseDate)
+                    @Html.EditorFor(m => m.ReleaseDate, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ReleaseDate)
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Description)
+                    @Html.LabelFor(m => m.Season)
+                    @Html.TextBoxFor(m => m.Season, new {@class = "form-control", placeholder = "Optional" })
+                    <br/>
+                    @Html.LabelFor(m => m.IsAvailable)
+                    @Html.CheckBoxFor(m => m.IsAvailable, new {@class = "form-group"})
+                    @Html.LabelFor(m => m.IsFlagship)
+                    @Html.CheckBoxFor(m => m.IsFlagship, new {@class = "form-group"})
+                    <br/>
+                    @* TODO: IMAGES *@
+                    @*@Html.LabelFor(m => m.ImgPath)*@
+                    <label>Image</label>
+                    <input type="file" name="file" id="file" />
+                    
+                    <label>Series</label>
+                    <fieldset id="seriesRadio">
+                        <input type="radio" name="seriesRadios" id="noSeriesRadio" checked="checked"/> None
+                        <input type="radio" name="seriesRadios" id="newSeriesRadio"/> New
+                        <input type="radio" name="seriesRadios" id="existingSeriesRadio"/> Existing
+                    </fieldset>
+                    @Html.DropDownListFor(m => m.SeriesId, Model.SeriesItems, new {id = "existingSeries", @class = "form-control"})
+                    <label>Collaborator</label>
+                    <fieldset id="collabRadio">
+                        <input type="radio" name="collabRadios" id="noCollabRadio" checked="checked"/> None
+                        <input type="radio" name="collabRadios" id="newCollabRadio"/> New
+                        <input type="radio" name="collabRadios" id="existingCollabRadio"/> Existing
+                    </fieldset>
+                    @Html.DropDownListFor(m => m.CollabId, Model.CollaboratorItems, new {id = "existingCollab", @class = "form-control"})
+                    <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" id="styleForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">New Style</div>
+                <div class="panel-body">
+                    @Html.LabelFor(m => m.StyleName)
+                    @Html.TextBoxFor(m => m.StyleName, new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.StyleName)
+                    @Html.LabelFor(m => m.StyleDescription)
+                    @Html.TextAreaFor(m => m.StyleDescription, new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.StyleDescription)
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" id="seriesForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">New Series</div>
+                <div class="panel-body">
+                    @Html.LabelFor(m => m.SeriesName)
+                    @Html.TextBoxFor(m => m.SeriesName, new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.SeriesName)
+                    @Html.LabelFor(m => m.SeriesDescription)
+                    @Html.TextAreaFor(m => m.SeriesDescription, new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.SeriesDescription)
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4" id="collabForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">New Collaborator</div>
+                <div class="panel-body">
+                    @Html.LabelFor(m => m.CollabName)
+                    @Html.TextBoxFor(m => m.CollabName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabName)
+                    @Html.LabelFor(m => m.CollabDescription)
+                    @Html.TextAreaFor(m => m.CollabDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabDescription)
+                    @Html.LabelFor(m => m.CollabStreetAddress)
+                    @Html.TextBoxFor(m => m.CollabStreetAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabStreetAddress)
+                    @Html.LabelFor(m => m.CollabCity)
+                    @Html.TextBoxFor(m => m.CollabCity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabCity)
+                    @Html.LabelFor(m => m.CollabState)
+                    @Html.TextBoxFor(m => m.CollabState, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabState)
+                    @Html.LabelFor(m => m.CollabZip)
+                    @Html.TextBoxFor(m => m.CollabZip, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabZip)
+                    @Html.LabelFor(m => m.CollabWebsite)
+                    @Html.TextBoxFor(m => m.CollabWebsite, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CollabWebsite)
+                </div>
+            </div>
+        </div>
+    </div>
+}

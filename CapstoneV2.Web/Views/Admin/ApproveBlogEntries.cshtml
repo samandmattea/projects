@@ -1,0 +1,52 @@
+﻿@using CapstoneV2.Models.Data
+@model List<CapstoneV2.Models.Data.BlogEntry>
+@{
+    ViewBag.Title = "Pending Posts";
+    var approvedBlogs = new List<BlogEntry>();
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @if (Model.Count == 0)
+        {
+            <p>There are no blog posts pending approval.</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date Written</th>
+                        <th>@* Detail Button *@</th>
+                        <th>@* Quick Approve Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var entry in Model)
+                    {
+                        using (Html.BeginForm("ApproveBlogEntry", "Admin", FormMethod.Post))
+                        {
+                            <tr>
+                                <td>@entry.Title</td>
+                                <td>@entry.User.FirstName @entry.User.LastName</td>
+                                <td>@entry.DatePosted.ToShortDateString()</td>
+                                <td>
+                                    @Html.ActionLink("Detail", "ApproveBlogEntry", "Admin", new { id = entry.EntryId })
+                                </td>
+                                <td><button class="btn btn-success">Approve</button></td>
+                                @* TODO-JK: When the 'approve' button is clicked, show 'un-approve' button in its place *@
+                                @* TODO: When approve button is clicked, instantly approve and reload the page *@
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

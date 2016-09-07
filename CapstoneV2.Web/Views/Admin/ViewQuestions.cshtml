@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CapstoneV2.Models.Data.ContactForm>
+@{
+    ViewBag.Title = "Unanswered Visitor Questions";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+
+        @if (!Model.Any())
+        {
+            <div>No questions remaining!</div>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>@* Button to view details *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var question in Model)
+                    {
+                        <tr>
+                            <td>@question.DateSent.ToShortDateString() @question.DateSent.ToShortTimeString()</td>
+                            <td>@question.Name</td>
+                            <td><a href=@Url.Action("ContactForm", "Admin", new {id = question.ContactFormId}) class="btn btn-info">View Details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

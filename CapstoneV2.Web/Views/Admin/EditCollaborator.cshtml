@@ -1,0 +1,57 @@
+﻿@model CapstoneV2.Web.Models.CollaboratorViewModel
+@{
+    ViewBag.Title = "Edit " + Model.Name;
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("EditCollaborator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.CollabId)
+                    @Html.HiddenFor(m => m.ContactId)
+                    @Html.HiddenFor(m => m.ImgPath)
+
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                    <label for="file">Picture</label>
+                    <input type="file" name="file" id="file" />
+                    @Html.LabelFor(m => m.StreetAddress)
+                    @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.StreetAddress)
+                    @Html.LabelFor(m => m.City)
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.City)
+                    @Html.LabelFor(m => m.State)
+                    @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.State)
+                    @Html.LabelFor(m => m.Zip)
+                    @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Zip)
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Phone)
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                    @*@Html.LabelFor(m => m.Website)
+                    @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Website)*@
+                    <button class="btn btn-primary">Update</button>
+                    @Html.ActionLink("Cancel", "ManageCollaborators", "Admin", new { @class = "btn btn-warning" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,46 @@
+﻿@model List<CapstoneV2.Models.Data.Venue>
+@{
+    ViewBag.Title = "Manage Venues";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Venue", "AddVenue", "Admin", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+        @if (!Model.Any())
+        {
+            <p>
+                Either an error has occurred, or you do not have any venues in the database.
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var venue in Model)
+                    {
+                        <tr>
+                            <td>@venue.Name</td>
+                            <td>@venue.Contact.StreetAddress, @venue.Contact.City @venue.Contact.State</td>
+                            <td>@Html.ActionLink("Edit", "EditVenue", "Admin", new { id = venue.VenueId }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteVenue", "Admin", new { id = venue.VenueId}, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+

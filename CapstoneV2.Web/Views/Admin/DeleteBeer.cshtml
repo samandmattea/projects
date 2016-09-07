@@ -1,0 +1,24 @@
+﻿@model CapstoneV2.Models.Data.Beer
+@{
+    ViewBag.Title = "Delete " + Model.Name;
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h2>@ViewBag.Title</h2>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("DeleteBeer", "Admin", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.BeerId)
+                    <p>Are you sure you would like to delete @Model.Name?</p>
+                    @Html.ActionLink("Cancel", "ManageBeers", "Admin", new {@class ="btn btn-info"})
+                    <button class="btn btn-danger">Delete</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CapstoneV2.Models.Data.BlogEntry>
+@{
+    ViewBag.Title = "Manage Blog";
+}
+
+<h2>Manage Blog</h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.ActionLink("Add Blog Entry", "AddBlogEntry", "Admin", new { @class = "btn btn-primary" })
+            @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+        </div>
+        @* TODO-JK&SD: Add property to viewmodel that will show the number of posts pending approval *@
+        @if (User.IsInRole("Admin"))
+        {@Html.ActionLink("Approve Pending Posts", "ApproveBlogEntries", "Admin", new { @class = "btn btn-primary" })}
+
+        @if (!Model.Any())
+        {
+            <p>
+                No blog posts yet
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date Posted</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>@* Edit Button *@</th>
+                    <th>@* Delete Button *@</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var entry in Model)
+                {
+                    <tr>
+                        <td>@entry.DatePosted.ToShortDateString() @entry.DatePosted.ToShortTimeString()</td>
+                        <td>@entry.Title</td>
+                        <td>@entry.User.FirstName @entry.User.LastName</td>
+                        <td>@if (User.IsInRole("Admin")) {@Html.ActionLink("Edit", "EditBlogEntry", "Admin", new { id = entry.EntryId }, new { @class = "btn btn-info" })}</td>
+                        <td>@if (User.IsInRole("Admin")) {@Html.ActionLink("Delete", "DeleteBlogEntry", "Admin", new { id = entry.EntryId }, new { @class = "btn btn-danger" })}</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-xs-4 col-sm-5"></div>
+    <div class="col-xs-4 col-sm-2">
+        <img src="~/Content/images/cropped-diver-helmet-border.png" class="img-responsive" />
+    </div>
+    <div class="col-xs-4 col-sm-5"></div>
+</div>
+<hr class="hr-nav" />
+<div class="row" id="navbar">
+    <div class="col-xs-6 col-sm-3">
+        <h1 class="supernav">@Html.ActionLink("About", "About", "Home")</h1>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <h1 class="supernav">@Html.ActionLink("Blog", "Blog", "Home")</h1>
+    </div>
+    @* TODO: see if i can get the diver graphic in here *@
+    <div class="col-xs-6 col-sm-3">
+        <h1 class="supernav">@Html.ActionLink("Beers", "All", "Beer")</h1>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        <h1 class="supernav">@Html.ActionLink("Events", "Index", "Event")</h1>
+    </div>
+</div>

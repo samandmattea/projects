@@ -1,0 +1,47 @@
+﻿@model List<CapstoneV2.Models.Data.StaticPage>
+@{
+    ViewBag.Title = "Manage Pages";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="panel-body">
+        @Html.ActionLink("Add Page", "AddStaticPage", "Admin", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Return to Menu", "Index", "Admin", null, new { @class = "btn btn-danger" })
+
+        @if (!Model.Any())
+        {
+            <p>
+                You don't have any static pages!  Create one by clicking the button above.
+            </p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date Created</th>
+                        <th>Date Updated</th>
+                        <th>@* Edit Button *@</th>
+                        <th>@* Delete Button *@</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var page in Model)
+                    {
+                        <tr>
+                            <td>@page.Title</td>
+                            <td>@page.DateCreated.ToShortDateString()</td>
+                            <td>@page.DateUpdated.ToShortDateString()</td>
+                            <td>@Html.ActionLink("Edit", "EditStaticPage", "Admin", new { id = page.PageId },new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteStaticPage", "Admin", new { id = page.PageId},new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

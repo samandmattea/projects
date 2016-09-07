@@ -1,0 +1,32 @@
+﻿@model CapstoneV2.Web.Models.EventsVM
+@using X.PagedList
+@using X.PagedList.Mvc
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Events</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-md=8">
+        @if (!Model.Events.Any())
+        {
+            <div>
+                There aren't any upcoming events right now. Subscribe to our
+                newsletter to keep in touch with what we're doing!
+            </div>
+        }
+        else
+        {
+            foreach (var e in Model.Events)
+            {
+                @Html.Partial("_EventView", e)
+            }
+            @*if (Model.Events.Count() > 1)
+            {
+                @Html.PagedListPager((IPagedList)Model.Events, page => Url.Action("Index", "Event", new { page }))
+            }*@
+        }
+
+    </div>
+</div>

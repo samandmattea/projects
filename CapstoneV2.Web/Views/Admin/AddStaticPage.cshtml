@@ -1,0 +1,35 @@
+﻿@model CapstoneV2.Web.Models.StaticPageViewModel
+@{
+    ViewBag.Title = "Add A Page";
+}
+
+@section headScripts{
+    @Scripts.Render("~/bundles/tinymce")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddStaticPage", "Admin", FormMethod.Post))
+                {
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new { autofocus = true, @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.LabelFor(m => m.Body)
+                    @Html.TextAreaFor(m => m.Body, new { id = "tinymce" })
+                    @Html.ValidationMessageFor(m => m.Body)
+                    <button class="btn btn-primary">Create</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

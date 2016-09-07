@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "About";
+}
+
+@section scripts{
+    @* TODO: Uncomment Age Gates before deployment/client meetings *@
+    @Scripts.Render("~/bundles/agecheck")
+}
+
+@* TODO: Outsource most style elements in this view to a CSS file *@
+<body>
+    <div class="inner-page" style="padding-top: 30px;">
+        <div id="main-container" class="panel panel-default">
+            <div id="mainPhoto" class="hidden-xs col-md-12 col-lg-12" style="padding-top: 15px;">
+                <img width="1500" height="200" src="~/Content/images/WatermarkHeader.jpg" class="img-thumbnail" />
+            </div>
+
+            <div class="watermark content">
+                <div class="row watermark-margin" style="padding: 15px;">
+                    <div class="watermark-third col-xs-12 col-md-6 col-lg-6">
+                        <img src="~/Content/images/WatermarkTaps.jpg" class="img-thumbnail" style="width: 100%; min-height: 200px">
+                    </div>
+                    <div class="watermark-twothird watermark-container col-xs-12 col-md-6 col-md-6" style="padding: 30px;">
+                        <h1>Taproom</h1>
+                        <hr/>
+                        <p>
+                            Our taproom is located in downtown Stevensville, with plenty of places to park. On a nice day you can find out four garage doors open to the patio and beer garden with many beers on tap changing daily. We love our laid back feel and would love to show you around, just ask the bartender. This is a dog friendly atmosphere so stop by with some friends and check out our social media for live music and food trucks that stop by often.
+                            <em>You must be 21 years or older to drink.</em>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="row watermark-margin" style="padding: 15px;">
+                    <div class="watermark-twothird watermark-container col-xs-12 col-md-6 col-lg-6" style="padding: 30px;">
+                        <h1>History</h1>
+                        <hr/>
+                        <p>
+                            Started in 2015 Chris Mason a natural born enturepreneur met Justin Schaul, a hospitality major and Dave Cockell the Chemist. The three boys made up the perfect combination to begin their dream of opening a brewery. About 15 months and many sleepless nights later, these boys made their dream come true.
+                        </p>
+                    </div>
+                    <div class="watermark-third col-xs-12 col-md-6 col-lg-6">
+                        <img src="~/Content/images/theboys.JPG" class="img-thumbnail" style="width: 100%; min-height: 200px">
+                    </div>
+                </div>
+
+
+                <div class="row watermark-margin" style="padding: 15px;">
+                    <div class="watermark-third col-xs-12 col-md-6 col-lg-6">
+                        <img src="~/Content/images/MeetTheTeam.jpg" class="img-thumbnail" style="width: 100%; min-height: 200px">
+                    </div>
+                    <div class="watermark-twothird watermark-container col-xs-12 col-md-6 col-lg-6" style="padding: 30px;">
+                        <h1>Meet The Team</h1>
+                        <hr/>
+                        <p>
+                            From Brewer to bartender and everything in between
+                        </p>
+                        @Html.ActionLink("Employees", "Employees", "Home", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

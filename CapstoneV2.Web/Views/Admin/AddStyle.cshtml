@@ -1,0 +1,29 @@
+﻿@model CapstoneV2.Web.Models.StyleViewModel
+@{
+    ViewBag.Title = "Add Style";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddStyle", "Admin", FormMethod.Post))
+                {
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                    <button class="btn btn-primary">Add</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

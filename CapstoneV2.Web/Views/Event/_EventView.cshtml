@@ -1,0 +1,35 @@
+﻿@model CapstoneV2.Models.Data.Event
+
+<div class="row">
+    <div class="col-xs-12 col-md-8"></div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>@Model.Name</h3>
+            @Model.StartDate.ToLongDateString()
+            @*@if (Model.StartTime.HasValue)
+            {
+                <span>&nbsp;at @Model.StartTime.Value.ToShortTimeString()</span>
+            }*@
+            @*@if (Model.EndDate.HasValue)
+            {
+
+                <br/>
+                <span>To @Model.EndDate.Value.ToLongDateString()</span>
+            }
+            @if (Model.EndTime.HasValue)
+            {
+                <span>&nbsp;at @Model.EndTime.Value.ToShortTimeString()</span>
+            }*@
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">@Model.Description</div>
+                <div class="col-xs-12 col-sm-4">
+                    <iframe class="google-maps" width="300" height="300"
+                            src=@Model.GmapsUrl
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model CapstoneV2.Models.Data.BlogEntry
+@{
+    ViewBag.Title = "Delete Blog Entry";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h2>@ViewBag.Title</h2>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("DeleteBlogEntry", "Admin", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.EntryId)
+
+
+                    <h3>@Model.Title</h3>
+                    <p>
+                        @Model.DatePosted.ToShortDateString()<br />
+                        by @Model.User.FirstName @Model.User.LastName,  @Model.User.JobTitle<br/>
+                        @Html.Raw(Model.Body)
+                    </p>
+                    <p>Are you sure you would like to delete this entry?</p>
+                    @Html.ActionLink("Cancel", "ManageBlog", "Admin", new { @class = "btn btn-info" })
+                    <button class="btn btn-danger">Delete</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

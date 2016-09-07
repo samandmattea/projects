@@ -1,0 +1,38 @@
+﻿@model CapstoneV2.Models.Data.User
+@{
+    ViewBag.Title = "Add User";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+                {
+                    <label>First Name</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    <label>Last Name</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    <label>Username</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                    <label>Email</label>
+                    @Html.TextBoxFor(m => m.Contact.Email)
+                    <label>Job Title</label>
+                    @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
+                    <label>Employee?</label>
+                    @Html.CheckBoxFor(m => m.IsEmployee, new { @class = "form-control" })
+                    <label>Access Level</label>
+                    @Html.EnumDropDownListFor(m => m.AccessLevel, new { @class = "form-control" })
+                    <label>Bio</label>
+                    @Html.TextAreaFor(m => m.Bio, new { @class = "form-control" })
+                    <button class="btn btn-primary">Add</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

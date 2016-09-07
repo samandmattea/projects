@@ -1,0 +1,160 @@
+﻿@model CapstoneV2.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register New User";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@ViewBag.Title</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>User Login Info</h4>
+
+            @Html.ValidationSummary("", new {@class = "text-danger"})
+            //set user name
+            <div class="form-group">
+                @Html.LabelFor(m => m.Username, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Username, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+            </div>
+            <h4>User Information</h4>
+            //set fname
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+            //set lname
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+            //set title
+            <div class="form-group">
+                @Html.LabelFor(m => m.JobTitle, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.JobTitle, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.JobTitle)
+                </div>
+            </div>
+            //select access level
+            <div class="form-group">
+                @Html.LabelFor(m => m.AccessLevel, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(m => m.AccessLevel, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.AccessLevel)
+                </div>
+            </div>
+            //option section for bio
+            <div class="form-group">
+                @Html.LabelFor(m => m.Bio, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Bio, new {@class = "form-control", placeholder = "Optional"})
+                    @Html.ValidationMessageFor(m => m.Bio)
+                </div>
+            </div>
+            //optional image path//TODO
+            <div class="form-group">
+                <label for="file">Profile Picture</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" id="file" />
+                </div>
+            </div>
+            //radio input for is employee
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsEmployee, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(m => m.IsEmployee, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.IsEmployee)
+                </div>
+            </div>
+            <h4>New User Contact Info</h4>
+            //contact info phone
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Phone, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Phone)
+                </div>
+            </div>
+            //street address
+            <div class="form-group">
+                @Html.LabelFor(m => m.StreetAddress, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.StreetAddress, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.StreetAddress)
+                </div>
+            </div>
+            //city
+            <div class="form-group">
+                @Html.LabelFor(m => m.City, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.City, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.City)
+                </div>
+            </div>
+            //state
+            <div class="form-group">
+                @Html.LabelFor(m => m.State, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.State, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.State)
+                </div>
+            </div>
+            //zip
+            <div class="form-group">
+                @Html.LabelFor(m => m.Zip, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Zip, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Zip)
+                </div>
+            </div>
+            @*<div class="form-group">
+                @Html.LabelFor(m => m.ImgPath, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ImgPath, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ImgPath)
+                </div>
+            </div>*@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Register"/>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,49 @@
+﻿
+
+@using X.PagedList
+@using X.PagedList.Mvc
+@model CapstoneV2.Web.Models.BlogVM
+@{
+    ViewBag.Title = "Archives";
+}
+
+@section scripts{
+    @* TODO: Uncomment Age Gates before deployment/client meetings *@
+    @Scripts.Render("~/bundles/agecheck")
+}
+
+<h2>Brewer's Blog</h2>
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Tags</div>
+            <div class="panel-body">
+                @foreach (var tag in Model.Tags)
+                {
+                    <span>
+                        &nbsp;
+                        <a href="@Url.Action("Blog", "Home", new {id = tag.TagId})" class="btn btn-danger">@tag.Name</a>
+                        &nbsp;
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md=8">
+        @if (!Model.BlogEntries.Any())
+        {
+            <div>Whoops, this blog is empty!</div>
+        }
+        else
+        {
+            foreach (var post in Model.BlogEntries)
+            {
+                @Html.Partial("_BlogPost", post)
+            }
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model.BlogEntries, page => Url.Action("Archives", new { page }))
+</div>
+

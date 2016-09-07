@@ -1,0 +1,26 @@
+﻿@model CapstoneV2.Models.Data.User
+@{
+    ViewBag.Title = $"Delete {Model.FirstName} {Model.LastName}";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>@ViewBag.Title</h2>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="row">
+                        <div class="col-xs-12">Are you sure you want to delete @Model.FirstName @Model.LastName?</div>
+                    </div>
+                    <button class="btn btn-primary">Delete</button>
+                    @Html.ActionLink("Cancel", "ManageUsers", "Admin", new { @class = "btn btn-primary" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

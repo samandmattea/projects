@@ -1,0 +1,75 @@
+﻿@model CapstoneV2.Web.Models.NewEventViewModel
+@{
+    ViewBag.Title = "Add Event";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/event-form.js"></script>
+}
+@using (Html.BeginForm("AddEvent", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">@ViewBag.Title</div>
+                <div class="panel-body">
+
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Name)
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Description)
+                    @Html.LabelFor(m => m.VenueId)
+                    <fieldset id="venueRadios">
+                        <input type="radio" name="venueRadios" id="newVenueRadio"/> New
+                        <input type="radio" name="venueRadios" id="existingVenueRadio" checked="checked"/> Existing
+                    </fieldset>
+                    @Html.DropDownListFor(m => m.VenueId, Model.VenueItems, "None", new {@class = "form-control"})
+
+                    @Html.LabelFor(m => m.ImgPath)
+                    <input type="file" name="file" id="file"/>
+                    <br/>
+                    @Html.LabelFor(m => m.DateStart, new {id = "sdLabel"})
+                    @Html.TextBoxFor(m => m.DateStart, new { placeholder = "MM/DD/YY hh:mm AM/PM", @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.DateStart)
+                    @Html.LabelFor(m => m.DateEnd, new {id = "edLabel"})
+                    @Html.TextBoxFor(m => m.DateEnd, new { placeholder = "MM/DD/YY hh:mm AM/PM", @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.DateEnd)
+                    <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4" id="venueForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">New Venue</div>
+                <div class="panel-body">
+                    @Html.LabelFor(m => m.VenueName)
+                    @Html.TextBoxFor(m => m.VenueName, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueName)
+                    @Html.LabelFor(m => m.VenueStreetAddress)
+                    @Html.TextBoxFor(m => m.VenueStreetAddress, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueStreetAddress)
+                    @Html.LabelFor(m => m.VenueCity)
+                    @Html.TextBoxFor(m => m.VenueCity, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueCity)
+                    @Html.LabelFor(m => m.VenueState)
+                    @Html.TextBoxFor(m => m.VenueState, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueState)
+                    @Html.LabelFor(m => m.VenueZip)
+                    @Html.TextBoxFor(m => m.VenueZip, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueZip)
+                    @Html.LabelFor(m => m.VenuePhone)
+                    @Html.TextBoxFor(m => m.VenuePhone, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenuePhone)
+                    @Html.LabelFor(m => m.VenueEmail)
+                    @Html.TextBoxFor(m => m.VenueEmail, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.VenueEmail)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

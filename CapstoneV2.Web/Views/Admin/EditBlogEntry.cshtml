@@ -1,0 +1,46 @@
+﻿@model CapstoneV2.Web.Models.BlogViewModel
+@{
+    ViewBag.Title = "Edit Post";
+}
+
+@section headScripts{
+    @Scripts.Render("~/bundles/tinymce")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/tinymce", "~/bundles/jqueryval")
+    <script src="~/Scripts/validate/validate-blog.js"></script>
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("EditBlogEntry", "Admin", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.BlogId)
+                    @Html.HiddenFor(m => m.PostDate)
+                    @*TODO: Adjust edit method in controller to accommodate entryId parameter *@
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new { autofocus = true, @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.LabelFor(m => m.Body)
+                    @Html.TextAreaFor(m => m.Body, new { id = "tinymce" })
+                    @Html.ValidationMessageFor(m => m.Body)
+                    @*@Html.LabelFor(m => m.File)*@
+                    @* TODO-JK: Resolve images in the stack*@
+                    @* TODO-JK: Add this file upload method for other 'Add' methods *@
+                    @*<input type="file" name="files" id="files"/>*@
+                    @Html.LabelFor(m => m.ExpireDate)
+                    @Html.TextBoxFor(m => m.ExpireDate, new { placeholder = "Optional", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ExpireDate)
+                    @Html.LabelFor(m => m.TagInput)
+                    @Html.TextBoxFor(m => m.TagInput, new { placeholder = "Separate by commas, spaces, or #s", @class = "form-control" })
+                    @* TODO-SD: In controller: if user is not admin access level, posts will go to the blog queue *@
+                    <button class="btn btn-primary">Submit Changes</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

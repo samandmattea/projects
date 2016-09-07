@@ -1,0 +1,22 @@
+﻿@model CapstoneV2.Models.Data.ContactForm
+@{
+    ViewBag.Title = "Contact Form";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Message from @Model.Name<br/>
+        Sent @Model.DateSent.ToShortDateString() at @Model.DateSent.ToShortTimeString()
+    </div>
+    <div class="panel-body">
+        <p>@Model.Message</p>
+        @using (@Html.BeginForm("ContactForm", "Admin", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.ContactFormId)
+            <a href="mailto:@Model.Email" class="btn btn-primary">Write Email Response</a>
+            @Html.ActionLink("Return to Menu", "ViewQuestions", "Admin", null, new {@class = "btn btn-warning"})
+            <button class="btn btn-success">Resolve Question</button>
+        }
+    </div>
+</div>
+

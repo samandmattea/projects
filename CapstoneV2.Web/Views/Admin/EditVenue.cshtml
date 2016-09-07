@@ -1,0 +1,46 @@
+﻿@model CapstoneV2.Web.Models.VenueViewModel
+@{
+    ViewBag.Title = "Edit " + Model.Name;
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("EditVenue", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.ContactId)
+                    @Html.HiddenFor(m => m.VenueId)
+                    @Html.HiddenFor(m => m.ImgPath)
+
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                    @Html.LabelFor(m => m.ImgPath)
+                    <input type="file" name="file" id="file" />
+                    @Html.LabelFor(m => m.StreetAddress)
+                    @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.StreetAddress)
+                    @Html.LabelFor(m => m.City)
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.City)
+                    @Html.LabelFor(m => m.State)
+                    @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.State)
+                    @Html.LabelFor(m => m.Zip)
+                    @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Zip)
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.TextBoxFor(m => m.Phone, new { placeholder = "Optional", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Phone)
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Optional", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                    <button class="btn btn-primary">Confirm</button>
+                    @Html.ActionLink("Cancel", "ManageVenues", "Admin", new { @class = "btn btn-warning" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

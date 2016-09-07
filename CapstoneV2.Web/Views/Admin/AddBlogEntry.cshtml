@@ -1,0 +1,59 @@
+﻿@model CapstoneV2.Web.Models.BlogViewModel
+@{
+    ViewBag.Title = "New Blog Entry";
+    var captions = new List<string>();
+    var imageFiles = new List<HttpPostedFileBase>();
+}
+
+@section headScripts{
+    @Scripts.Render("~/bundles/tinymce")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<script src="~/Scripts/app/img-gallery.js"></script>*@
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddBlogEntry", "Admin", FormMethod.Post, new {id = "blogForm", enctype = "multipart/form-data"}))
+                {
+                    @* TODO: VALIDATE, YO *@
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new {autofocus = true, @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.LabelFor(m => m.Body)
+                    @Html.TextAreaFor(m => m.Body, new {id = "tinymce"})
+                    @Html.ValidationMessageFor(m => m.Body)
+                    @Html.LabelFor(m => m.File)
+                    <input type="file" name="file" id="file"/>
+                    @Html.LabelFor(m => m.ExpireDate)
+                    @Html.EditorFor(m => m.ExpireDate, new {placeholder = "Optional", @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ExpireDate)
+                    @Html.LabelFor(m => m.TagInput)
+                    @Html.TextBoxFor(m => m.TagInput, new {placeholder = "Separate by commas, spaces, or #s", @class = "form-control"})
+                    @*<label>Upload multiple pictures for a gallery</label>
+                    <input type="file" multiple name="images" id="images"/>*@
+                    @* TODO: In controller, parse tags from TagInput and Body using method in BlogPostOperations (BLL) *@
+
+                    <button class="btn btn-primary">Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+    @* THIS SECTION IS FOR IF SOMEDAY WE FIGURE OUT MULTI-IMAGE UPLOAD WITH INDIVIDUAL UPLOADERS/CAPTION SPACES
+        IGNORE THIS COMPLETELY BEFORE THURSDAY *@
+    @*<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">Image Gallery Upload</div>
+            <div class="panel-body">
+                <div id="imgUploaders">
+                    <div class="btn btn-success" id="addImg">Add Photo</div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>

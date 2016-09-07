@@ -1,0 +1,79 @@
+﻿@using CapstoneV2.Models.Enums
+
+@{
+    ViewBag.Title = "Administrator Menu";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">@ViewBag.Title</div>
+            <div class="panel-body">
+                @*<div class="col-xs-12 col-sm-4 col-lg-4">
+                    @Html.ActionLink("Log in", "Login", "Account", new {returnUrl = "/Account/Login"}, new {@class = "btn btn-primary"})
+                </div>*@
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Log in", "Login", "Account", new {returnUrl = "/Account/Login"}, new {@class = "btn btn-primary"})
+                    </div>
+                }
+               @if (User.IsInRole("Admin") || User.IsInRole("Contributor") || User.IsInRole("Writer"))
+
+                {
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Blog", "ManageBlog", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    
+               }
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Beers", "ManageBeers", "Admin", null, new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Beer Styles", "ManageStyles", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Events", "ManageEvents", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Venues", "ManageVenues", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Collaborators", "ManageCollaborators", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Users", "ManageUsers", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Manage Static Pages", "ManageStaticPages", "Admin", new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        @Html.ActionLink("Contact Requests", "ViewQuestions", "Admin", new { @class = "btn btn-primary" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="wrapper">
+            <div class="side-bar">
+                <ul>
+                    <li class="menu-head">
+                        Admin Actions <a href="#" class="push-menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
+                    </li>
+                    <div class="menu">
+                        <li></li>/>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@

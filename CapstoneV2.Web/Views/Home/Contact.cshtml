@@ -1,0 +1,45 @@
+﻿@model CapstoneV2.Models.Data.ContactForm
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+
+@section scripts{
+    @* TODO: Uncomment Age Gates before deployment/client meetings *@
+    @Scripts.Render("~/bundles/agecheck")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<h2 class="font-klinic-bold">@ViewBag.Title</h2>
+<h3 class="font-klinic-bold">@ViewBag.Message</h3>
+
+@using (@Html.BeginForm("Contact", "Home", FormMethod.Post, new {id = "contactForm"}))
+{
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="col-xs-12 col-sm-4">
+                    <label>Name</label>
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})<br/>
+                    <label>Email</label>
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})<br/>
+                    <label>Message</label>
+                    @Html.TextAreaFor(m => m.Message, new {@class = "form-control"})<br/>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <address>
+                        5781 St. Joseph Ave<br/>
+                        Stevensville, MI 49127<br/>
+                    </address>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @*<iframe class="google-maps" width="300" height="300"
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJx0lYh7jcEIgR0IH_X8XlhCc&zoom=15&key=AIzaSyCqBmnjONAkuxwGlva581PNNi-Q2rLUYaU"
+                            allowfullscreen></iframe>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
