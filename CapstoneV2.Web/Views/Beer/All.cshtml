@@ -85,11 +85,12 @@
                                                     <a class="portfolio-link" data-toggle="modal">
                                                         <div class="hover-text">
                                                             <h4>@beer.Name</h4>
+                                                            @Html.ActionLink("Click for details", "Details", "Beer", new { id = @beer.BeerId }, null)
                                                             <div class="clearfix"></div>
                                                         </div>
                                                         @if (!string.IsNullOrEmpty(beer.ImgPath))
                                                         {
-                                                            <img src="@Url.Content(@beer.ImgPath)" class="img-responsive" alt="Project Title" style="width:200px;">
+                                                            <img src="@Url.Content(@beer.ImgPath)" class="img-responsive" alt="Project Title" style="width:100%;">
                                                         }
 
                                                     </a>
